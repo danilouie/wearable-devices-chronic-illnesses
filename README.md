@@ -19,7 +19,9 @@ This repository contains the code for Danielle Louie's final project for DSCI 51
 
 ### About
 
-The project aims to analyze how machine learning algorithms, specifically RandomForestClassifier, can help to flag potential chronic diseases based on health data collected by user-wearable devices. For this project, we focus on data collected by Apple Watches and Fitbits.
+The project aims to analyze how machine learning algorithms, specifically RandomForestClassifier, can help to flag potential chronic diseases based on health data collected by user-wearable devices. For this project, we focus on data collected by Apple Watches and Fitbits. The project is conducted primarily with Python and Jupyter Notebook.
+
+---
 
 ### Data sources
 
@@ -32,6 +34,19 @@ The `U.S._Chronic_Disease_Indicators.xlsx` file, obtained from using a RESTful w
 [Nutrition, Physical Activity, and Obesity Behavioral Risk Factors](https://catalog.data.gov/dataset/nutrition-physical-activity-and-obesity-behavioral-risk-factor-surveillance-system)
 The data from `Nutrition_Physical_Activity_and_Obesity_-_Behavioral_Risk_Factor_Surveillance_System.csv` contains 33 public surveillance indicators and 106260 instances related to behavioral risk factors. The data was used to train a RandomForestClassifier in matching what types of chronic diseases may be linked to diseases that can be identified better through physical indicators. For this project, we will only be using 60720 instances that were stratified by `Sex`, `Race/Ethnicity`, and `Age`.
 
+---
+
+### Files
+- `load.py`: Loads all the data and converts them into usable DataFrames.
+- `process.py`: Cleans and engineers the features in each dataset. Creates DataFrames as needed.
+- `augment.py`: Uses RandomForestClassifier to create a full DataFrame with predictions of diseases.
+- `analyze.py`: Analyzes the final results and produces data visualizations.
+- `tests.py`: Unit tests for checking if functions are working as expected.
+- `results.ipynb`: A Jupyter Notebook that runs the project from start to finish.
+- `main.py`: A Python script that runs the project from start to finish.
+
+---
+
 ### Results
 
 ##### Data Observation
@@ -40,37 +55,54 @@ From our EDA analysis, we can see that due to the large number of data in all th
 
 ##### Result Analysis
 
-From our results, we can observe that the RandomForestClassifier found that people who have a high BMI (and might be experience weight concerns) are more likely to have a chronic disease under the "Nutrition, Physical Activity, and Weight Status"; this seems to make sense as given that we were mainly provided with physical health data from wearable user devices, such as It was also predicted that only males would experience this problem, which likely can be bias in the machine learning algorithm caused by the availability of data that we are working with. 
+Overall, the machine learning algorithm appeared to have biased, yet also yield insightful results. 
+
+First, we can observe the bias from the final three bar plots created, specifically the last two: **Disease Distribution by Sex** and **Disease Distribution by Age Bin**. In Disease Distribution by Sex, we see that the RandomForestClassifier predicted that only men would experience a chronic disease related to *Nutrition, Physical Activity, and Weight Status* while only women would experience *Arthritis*. It is difficult to believe that in such a large sample size, a disease would be distributed so evenly by sex alone, especially since neither of these diseases are strongly impacted by sex only. However, it is important to note that women are more prone to arthritis, which could partially explain that perhaps, the RandomForestClassifier and the data we provided had more women than men with arthritis. 
+
+Second, in Disease Distribution by Age Bin, we see a huge disparancy between the number of people who fall into the category of 18-44 compared to 45-64. Part of this age distribution can be due to the fact that 18-44 is a wider range of data compared to 45-64; however, this was the only reasonable binning of age due to the age grouping provided from the US Chronic Disease Indicators resource.
+
+Despite these outcomes, we can still draw insight from this project. What was interesting was that the RandomForestClassifier predicted the highest count for *Nutrition, Physical Activity, and Weight Status*, followed by *Arthritis*, then *Asthma*. If we only considered the data that we were testing on, which was **physical health data**, this ordering makes sense. The first two chronic diseases reflect in physical conditions much more than the third. The first condition especially is more correlated to features that we were able to engineer, such as `BMI` and `heart_rate compared` to `target_heart_rate`, which the RandomForestClassifier may have learned when training on the Behavioral Risk Factor and Chronic Disease Indicator data that listed "Obesity / Weight Status" as a disease.
+
+---
 
 ### Improvements
 
+1. **More Joint Data**: Collecting datasets that directly link physical indicators from wearables to tracked chronic conditions could greatly strengthen the model.
+2. **Alternative Algorithms**: Other algorithms besides Random Forest (e.g., boosting, neural networks) may yield different or more robust results given class imbalance and dataset structure.
+3. **Feature Engineering**: Additional features or more nuanced aggregation might improve performance and interpretability.
+
+---
+
 ### Installation
 
-- _describe what API keys, user must set where (in .enve) to be able to run the project._
-- _describe what special python packages you have used_
+**Prerequisites:**
+- Python 3.8 or higher
+- pip or conda
+
+**Steps:**
+1. Clone this repository
+    ```python
+    git clone <https://github.com/danilouie/wearable-devices-chronic-illnesses.git>
+    cd <your-repo-directory>
+    ```
+
+2. Setup environment variables
+    - You can use `env.example` as a reference.
+
+3. Install dependencies
+    ```python
+    pip install -r requirements.txt
+    ```
+    
+4. Download Data 
+    - Download data from the links in the [Data Sources](#data-sources) section. No credentials or API keys are neded. Datasets are either included or downloaded at runtime, using public API endpoints as referenced in code and comments.
+
+*Note: Feel free to set up your own [venv](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).*
+
+---
 
 ### Running analysis
 
-_update these instructions_
-
 From `src/` directory run:
-
-`python main.py `
-
-Results will appear in `results/` folder. All obtained will be stored in `data/`
-
-to do:
-
-- analyze.py
-- main.py
-- README.md
-- descriptions in results.ipynb
-- test.py
-- requirements.txt
-- slides
-
-done:
-
-- load.py
-- process.py
-- augment.py
+- `python main.py`: Results will appear in `results/` folder. All obtained will be stored in `data/`.
+- `results.ipynb`: Results are printed chronologically in the cells. Plots are shown as well.
