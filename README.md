@@ -31,7 +31,7 @@ The `aw_fb_data.csv` file contains 20 features of data collected from either App
 
 [US Chronic Disease Indicators](https://healthdata.gov/CDC/U-S-Chronic-Disease-Indicators/dhcp-wb3k/about_data)
 
-The `U.S._Chronic_Disease_Indicators.xlsx` file, obtained from using a RESTful web API, contains 34 public surveillance indicators and 309215 related to chronic diseases and their risk factors. The data was used to train a RandomForestClassifier in matching what types of chronic diseases may be linked to diseases that can be identified better through physical indicators. For this project, we will only be using 271694 instances that were stratified by `Sex`, `Race/Ethnicity`, and `Age`.
+The `U.S._Chronic_Disease_Indicators.xlsx` file, obtained from using a RESTful web API, contains 34 public surveillance indicators and 309215 instances related to chronic diseases and their risk factors. The data was used to train a RandomForestClassifier in matching what types of chronic diseases may be linked to diseases that can be identified better through physical indicators. For this project, we will only be using 271694 instances that were stratified by `Sex`, `Race/Ethnicity`, and `Age`.
 
 [Nutrition, Physical Activity, and Obesity Behavioral Risk Factors](https://catalog.data.gov/dataset/nutrition-physical-activity-and-obesity-behavioral-risk-factor-surveillance-system)
 
