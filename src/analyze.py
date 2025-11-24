@@ -134,7 +134,7 @@ def analyze_chronic_data(chronic_age_df, chronic_race_df, chronic_sex_df, save_d
         print(f"Unable to visualize chronic data: {e}")
 
 
-def analyze_nutri_data(nutri_sex_df, nutri_age_df, nutri_race_df, save_dir):
+def analyze_nutri_data(nutri_sex_df, nutri_age_df, nutri_race_df, save_dir=None):
     """
     Plot the distribution of each split nutri DataFrame.
 
@@ -228,7 +228,7 @@ def analyze_assigned_diseases(full_df) -> tuple:
         print(f"Unable to analyze disease assignments: {e}")
 
 
-def plot_results(disease_counts, disease_sex, disease_age, save_dir):
+def plot_results(disease_counts, disease_sex, disease_age, save_dir=None):
     """
     Plots bar charts for disease assignment analyses.
 

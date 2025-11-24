@@ -69,6 +69,7 @@ def process_nutri_data(nutri_df) -> tuple:
         nutri_sex_df = nutri_sex_df.drop(columns='StratificationCategory1').rename(columns={'Stratification1': 'Sex'})
        
         print("Creating nutri_age_df...")
+        
         # Function to group ages into corresponding age bins
         def map_nutri_age(age_label):
             if age_label in ['18 - 24', '25 - 34', '35 - 44']:
