@@ -14,7 +14,7 @@ def get_csv(filepath: str) -> pd.DataFrame:
     Returns: 
         pandas DataFrame (df) or None
     """
-    print(f"---Loading {filepath} into DataFrame ---")
+    print(f"--- Loading {filepath} into DataFrame ---")
     try:
         df = pd.read_csv(filepath)
         print("Data loaded successfully")
@@ -34,10 +34,9 @@ def get_chronic_data(url: str) -> pd.DataFrame:
         url: The URL for the API
 
     Returns:
-
         pandas DataFrame (df) or None
     """
-    print(f"---Downloading {url} ---")
+    print(f"--- Downloading {url} ---")
     try: 
         response = requests.get(url)
         response.raise_for_status()
