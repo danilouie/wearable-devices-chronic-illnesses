@@ -26,12 +26,15 @@ The project aims to analyze how machine learning algorithms, specifically Random
 ### Data sources
 
 [Apple Watch and Fitbit Data](https://www.kaggle.com/datasets/aleespinosa/apple-watch-and-fitbit-data?utm_source=chatgpt.com&select=aw_fb_data.csv)
+
 The `aw_fb_data.csv` file contains 20 features of data collected from either Apple Watches and Fitbits during a range of activities and has a total of 6264 instances. The data was used to as a baseline for physical indicators that a machine learning algorithm could use to predict disease.
 
 [US Chronic Disease Indicators](https://healthdata.gov/CDC/U-S-Chronic-Disease-Indicators/dhcp-wb3k/about_data)
+
 The `U.S._Chronic_Disease_Indicators.xlsx` file, obtained from using a RESTful web API, contains 34 public surveillance indicators and 309215 related to chronic diseases and their risk factors. The data was used to train a RandomForestClassifier in matching what types of chronic diseases may be linked to diseases that can be identified better through physical indicators. For this project, we will only be using 271694 instances that were stratified by `Sex`, `Race/Ethnicity`, and `Age`.
 
 [Nutrition, Physical Activity, and Obesity Behavioral Risk Factors](https://catalog.data.gov/dataset/nutrition-physical-activity-and-obesity-behavioral-risk-factor-surveillance-system)
+
 The data from `Nutrition_Physical_Activity_and_Obesity_-_Behavioral_Risk_Factor_Surveillance_System.csv` contains 33 public surveillance indicators and 106260 instances related to behavioral risk factors. The data was used to train a RandomForestClassifier in matching what types of chronic diseases may be linked to diseases that can be identified better through physical indicators. For this project, we will only be using 60720 instances that were stratified by `Sex`, `Race/Ethnicity`, and `Age`.
 
 ---
@@ -49,11 +52,11 @@ The data from `Nutrition_Physical_Activity_and_Obesity_-_Behavioral_Risk_Factor_
 
 ### Results
 
-##### Data Observation
+#### Data Observation
 
 From our EDA analysis, we can see that due to the large number of data in all three data sources, we have a fairly even distribution of `Sex` and `Race/Ethnicity`. The main class imbalance that we accounted for was the `Age_Bin`, as our age bins were of different sizes and it appeared that younger people are more likely to wear an Apple Watch or Fitbit.
 
-##### Result Analysis
+#### Result Analysis
 
 Overall, the machine learning algorithm appeared to have biased, yet also yield insightful results. 
 
@@ -93,7 +96,7 @@ Despite these outcomes, we can still draw insight from this project. What was in
     ```python
     pip install -r requirements.txt
     ```
-    
+
 4. Download Data 
     - Download data from the links in the [Data Sources](#data-sources) section. No credentials or API keys are neded. Datasets are either included or downloaded at runtime, using public API endpoints as referenced in code and comments.
 
