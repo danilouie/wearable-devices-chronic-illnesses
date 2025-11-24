@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 
 
 # --- 1. CLEANS Apple Watch and Fitbit DATA

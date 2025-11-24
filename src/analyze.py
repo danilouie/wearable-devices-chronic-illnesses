@@ -1,9 +1,10 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 
 
 # --- 1. CONDUCT EDA
-def analyze_aw_fb_data(aw_fb_df):
+def analyze_aw_fb_data(aw_fb_df, save_dir=None):
     """
     Plot 
 
@@ -59,13 +60,17 @@ def analyze_aw_fb_data(aw_fb_df):
         plt.tight_layout()
         plt.show()
 
+        if save_dir is not None:
+            plt.savefig(os.path.join(save_dir, "aw_fb_analysis.png"))
+            plt.close()
+
         print("EDA for aw_fb plotted!")
-                
+        
     except Exception as e:
         print(f"Unable to visualize aw_fb_data: {e}")
 
 
-def analyze_chronic_data(chronic_age_df, chronic_race_df, chronic_sex_df):
+def analyze_chronic_data(chronic_age_df, chronic_race_df, chronic_sex_df, save_dir=None):
     """
     Plot the distribution of each split chronic DataFrame.
 
@@ -88,6 +93,10 @@ def analyze_chronic_data(chronic_age_df, chronic_race_df, chronic_sex_df):
         plt.xticks(rotation=45)
         plt.tight_layout()
         plt.show()
+    
+        if save_dir is not None:
+            plt.savefig(os.path.join(save_dir, "chronic_age_analysis.png"))
+            plt.close()
 
         # Chronic race counts
         race_counts = chronic_race_df['Race/Ethnicity'].value_counts()
@@ -99,6 +108,10 @@ def analyze_chronic_data(chronic_age_df, chronic_race_df, chronic_sex_df):
         plt.xticks(rotation=45)
         plt.tight_layout()
         plt.show()
+
+        if save_dir is not None:
+            plt.savefig(os.path.join(save_dir, "chronic_race_analysis.png"))
+            plt.close()
                 
         # Chronic sex counts
         sex_counts = chronic_sex_df['Sex'].value_counts()
@@ -111,13 +124,17 @@ def analyze_chronic_data(chronic_age_df, chronic_race_df, chronic_sex_df):
         plt.tight_layout()
         plt.show()
 
+        if save_dir is not None:
+            plt.savefig(os.path.join(save_dir, "chronic_sex_analysis.png"))
+            plt.close()
+
         print("Three bar plots created!")
     
     except Exception as e:
         print(f"Unable to visualize chronic data: {e}")
 
 
-def analyze_nutri_data(nutri_sex_df, nutri_age_df, nutri_race_df):
+def analyze_nutri_data(nutri_sex_df, nutri_age_df, nutri_race_df, save_dir):
     """
     Plot the distribution of each split nutri DataFrame.
 
@@ -130,7 +147,7 @@ def analyze_nutri_data(nutri_sex_df, nutri_age_df, nutri_race_df):
         Three bar plots showing the distribution of each dataframe.
     """
     try:
-        # Chronic sex counts
+        # Nutri sex counts
         sex_counts = nutri_sex_df['Sex'].value_counts()
         plt.figure(figsize=(7, 5))
         sex_counts.plot(kind='bar')
@@ -140,6 +157,10 @@ def analyze_nutri_data(nutri_sex_df, nutri_age_df, nutri_race_df):
         plt.xticks(rotation=0)
         plt.tight_layout()
         plt.show()
+
+        if save_dir is not None:
+            plt.savefig(os.path.join(save_dir, "nutri_sex_analysis.png"))
+            plt.close()
 
         # Nutri age counts
         age_counts = nutri_age_df['age_bin'].value_counts().sort_index()
@@ -152,7 +173,11 @@ def analyze_nutri_data(nutri_sex_df, nutri_age_df, nutri_race_df):
         plt.tight_layout()
         plt.show()
 
-        # Chronic race counts
+        if save_dir is not None:
+            plt.savefig(os.path.join(save_dir, "nutri_age_analysis.png"))
+            plt.close()
+
+        # Nutri race counts
         race_counts = nutri_race_df['Race/Ethnicity'].value_counts()
         plt.figure(figsize=(12, 7))
         race_counts.plot(kind='bar')
@@ -163,6 +188,10 @@ def analyze_nutri_data(nutri_sex_df, nutri_age_df, nutri_race_df):
         plt.tight_layout()
         plt.show()
         
+        if save_dir is not None:
+            plt.savefig(os.path.join(save_dir, "nutri_race_analysis.png"))
+            plt.close()
+
         print("Three bar plots created!")
     
     except Exception as e:
@@ -199,7 +228,7 @@ def analyze_assigned_diseases(full_df) -> tuple:
         print(f"Unable to analyze disease assignments: {e}")
 
 
-def plot_results(disease_counts, disease_sex, disease_age):
+def plot_results(disease_counts, disease_sex, disease_age, save_dir):
     """
     Plots bar charts for disease assignment analyses.
 
@@ -222,6 +251,10 @@ def plot_results(disease_counts, disease_sex, disease_age):
         plt.ylabel("Count")
         plt.tight_layout()
         plt.show()
+
+        if save_dir is not None:
+            plt.savefig(os.path.join(save_dir, "disease_counts.png"))
+            plt.close()
         
         # Disease by Sex
         plt.figure(figsize=(10, 8))
@@ -234,6 +267,10 @@ def plot_results(disease_counts, disease_sex, disease_age):
         plt.tight_layout()
         plt.show()
 
+        if save_dir is not None:
+            plt.savefig(os.path.join(save_dir, "disease_by_sex.png"))
+            plt.close()
+
         # Disease by Age Bin
         plt.figure(figsize=(10, 8))
         disease_age.plot(kind='bar', stacked=False)
@@ -244,6 +281,10 @@ def plot_results(disease_counts, disease_sex, disease_age):
         plt.legend(title="Age Bin")
         plt.tight_layout()
         plt.show()
+
+        if save_dir is not None:
+            plt.savefig(os.path.join(save_dir, "disease_by_age.png"))
+            plt.close()
     
     except Exception as e:
         print(f"Unable to create visualizations: {e}")
