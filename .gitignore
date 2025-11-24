@@ -2,4 +2,6 @@
 /previous examples/
 /code/
 /data/
+/results/
 sample_project*
+.DS_Store

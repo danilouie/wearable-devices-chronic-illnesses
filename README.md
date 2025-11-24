@@ -40,6 +40,8 @@ The data from `Nutrition_Physical_Activity_and_Obesity_-_Behavioral_Risk_Factor_
 ---
 
 ### Files
+
+- `config.py`: Creates necessary directory paths and contains paths for data.
 - `load.py`: Loads all the data and converts them into usable DataFrames.
 - `process.py`: Cleans and engineers the features in each dataset. Creates DataFrames as needed.
 - `augment.py`: Uses RandomForestClassifier to create a full DataFrame with predictions of diseases.
@@ -58,9 +60,9 @@ From our EDA analysis, we can see that due to the large number of data in all th
 
 #### Result Analysis
 
-Overall, the machine learning algorithm appeared to have biased, yet also yield insightful results. 
+Overall, the machine learning algorithm appeared to have biased, yet also yield insightful results.
 
-First, we can observe the bias from the final three bar plots created, specifically the last two: **Disease Distribution by Sex** and **Disease Distribution by Age Bin**. In Disease Distribution by Sex, we see that the RandomForestClassifier predicted that only men would experience a chronic disease related to *Nutrition, Physical Activity, and Weight Status* while only women would experience *Arthritis*. It is difficult to believe that in such a large sample size, a disease would be distributed so evenly by sex alone, especially since neither of these diseases are strongly impacted by sex only. However, it is important to note that women are more prone to arthritis, which could partially explain that perhaps, the RandomForestClassifier and the data we provided had more women than men with arthritis. 
+First, we can observe the bias from the final three bar plots created, specifically the last two: **Disease Distribution by Sex** and **Disease Distribution by Age Bin**. In Disease Distribution by Sex, we see that the RandomForestClassifier predicted that only men would experience a chronic disease related to *Nutrition, Physical Activity, and Weight Status* while only women would experience *Arthritis*. It is difficult to believe that in such a large sample size, a disease would be distributed so evenly by sex alone, especially since neither of these diseases are strongly impacted by sex only. However, it is important to note that women are more prone to arthritis, which could partially explain that perhaps, the RandomForestClassifier and the data we provided had more women than men with arthritis.
 
 Second, in Disease Distribution by Age Bin, we see a huge discrepancy between the number of people who fall into the category of 18-44 compared to 45-64. Part of this age distribution can be due to the fact that 18-44 is a wider range of data compared to 45-64; however, this was the only reasonable binning of age due to the age grouping provided from the US Chronic Disease Indicators resource. In reality, many more people in the 45-64 age group experience chronic diseases as they are more prevalent in the older community.
 
@@ -79,26 +81,31 @@ Despite these outcomes, we can still draw insight from this project. What was in
 ### Installation
 
 **Prerequisites:**
+
 - Python 3.8 or higher
 - pip or conda
 
 **Steps:**
+
 1. Clone this repository
-    ```python
-    git clone <https://github.com/danilouie/wearable-devices-chronic-illnesses.git>
-    cd <your-repo-directory>
-    ```
 
+   ```python
+   git clone <https://github.com/danilouie/wearable-devices-chronic-illnesses.git>
+   cd <your-repo-directory>
+   ```
 2. Setup environment variables
-    - You can use `env.example` as a reference.
 
+   - You can use `env.example` as a reference.
 3. Install dependencies
-    ```python
-    pip install -r requirements.txt
-    ```
 
-4. Download Data 
-    - Download data from the links in the [Data Sources](#data-sources) section. No credentials or API keys are neded. Datasets are either included or downloaded at runtime, using public API endpoints as referenced in code and comments.
+   ```python
+   pip install -r requirements.txt
+   ```
+4. Download Data
+
+   - Download data from the links in the [Data Sources](#data-sources) section. No credentials or API keys are neded. Datasets are either included or downloaded at runtime, using public API endpoints as referenced in code and comments.
+   - All major file and folder paths are set in `config.py`.
+   - If you place your datasets in a different location or use different filenames, update the values in `config.py` accordingly.
 
 *Note: Feel free to set up your own [venv](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).*
 
@@ -107,5 +114,6 @@ Despite these outcomes, we can still draw insight from this project. What was in
 ### Running analysis
 
 From `src/` directory run:
+
 - `python main.py`: Results will appear in `results/` folder. All obtained will be stored in `data/`.
 - `results.ipynb`: Results are printed chronologically in the cells. Plots are shown as well.

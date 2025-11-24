@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 # --- 1. CONDUCT EDA
@@ -213,6 +214,8 @@ def analyze_assigned_diseases(full_df) -> tuple:
             - disease_age: DataFrame of disease by Age_Bin.
     """
     try:
+        full_df['Assigned_Disease'] = full_df['Assigned_Disease'].replace({'Nutrition, Physical Activity, and Weight Status': 'NPW'})
+
         print("Counting number of each disease...")
         disease_counts = full_df['Assigned_Disease'].value_counts(dropna=True)
 
@@ -228,7 +231,7 @@ def analyze_assigned_diseases(full_df) -> tuple:
         print(f"Unable to analyze disease assignments: {e}")
 
 
-def plot_results(disease_counts, disease_sex, disease_age, save_dir=None):
+def plot_disease_results(disease_counts, disease_sex, disease_age, save_dir=None):
     """
     Plots bar charts for disease assignment analyses.
 
@@ -289,3 +292,27 @@ def plot_results(disease_counts, disease_sex, disease_age, save_dir=None):
     except Exception as e:
         print(f"Unable to create visualizations: {e}")
 
+def analyze_dem_info(full_df, save_dir=None):
+    """
+    Plots boxplots for BMI, Sex, and Age Bin analyses.
+
+
+    Args:
+        full_df: A cleaned DataFrame with predicted diseases.
+
+    Returns: 
+        Boxplot showing BMI distribution by Sex and Age Bin.
+    """
+    
+    try: 
+        plt.figure(figsize=(8,6))
+        sns.boxplot(x='Sex', y='BMI', hue='Age_Bin', data=full_df)
+        plt.title('BMI Distribution by Sex and Age Bin', fontsize=18)
+        plt.show()
+
+        if save_dir is not None:
+                plt.savefig(os.path.join(save_dir, "disease_by_age.png"))
+                plt.close()
+    
+    except Exception as e:
+        print(f"Unable to create visualizations: {e}")
